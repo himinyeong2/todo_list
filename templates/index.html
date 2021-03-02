@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minyeong's Todo-List</title>
+
+    <link rel="stylesheet" href="static/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="static/css/style.css" />
+    <link rel="icon" href="static/img/favicon.ico" type="image/x-icon">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <a href="?" style="color:white; position:absolute; right:10px ; top:10px;">home
+    </a>
+    <div class="container">
+
+        <div class=" mx-auto col-md-9 py-5">
+            <div class="col-md-12 text-center today" style="font-size:3rem">
+                <span onclick="go('<?php echo show_date(-1) ?>')"
+                    style="position: absolute; left:0; bottom:0; font-size:15px;">
+                    prev </span>
+                <?php echo $today."(".$weekday.")" ?>
+                <span onclick="go('<?php echo show_date(+1) ?>')"
+                    style="position: absolute; right:0;  bottom:0; font-size:15px;"> next </span>
+                <div style="font-size:1.5rem;" id="clock"></div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <input id="todo_list_input" type="text" class="form-control" placeholder="할 일을 입력하고 엔터하세욤~" id="">
+                </div>
+            </div>
+
+            <?php echo $todo_list ?>
+
+        </div>
+    </div>
+
+    <script src="static/js/clock.js"></script>
+    <script src="static/js/script.js"></script>
+    <script>
+        $('#todo_list_input').keypress(function (e) {
+            if (e.keyCode == 13) {
+                var input = $(this).val();
+                if (input == '') {
+                    alert("할 일을 입력해주세요^^");
+                }
+                else {
+                    $.ajax({
+                        url: '?mode=add',
+                        type: 'post',
+                        data: { 'todo': input, 'date': '<?php echo $today ?>' },
+                        success: function (data) {
+                            location.reload();
+                        }
+                    });
+                }
+
+            }
+        });
+    </script>
+
+</body>
+
+</html>
