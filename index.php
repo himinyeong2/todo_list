@@ -58,6 +58,11 @@ else if($mode == ''){
     $today = (isset($_GET['today']))? $_GET['today'] : date('Y-m-d');
     $week = array("Sun" , "Mon"  , "Tue" , "Wed" , "Thu" , "Fri" ,"Sat") ;
     $weekday = $week[ date('w'  , strtotime($today)  ) ] ;
+    
+    $end_date = '2021-06-05';
+    $d_day =  intval((strtotime($end_date)-strtotime($today)) / 86400);
+
+    $d_day = ($d_day==0)? "day" : $d_day ;
 
     $qr = "SELECT * FROM todo_list WHERE date = '$today' ORDER BY reg_date";
     $stmt = $conn-> prepare($qr);
