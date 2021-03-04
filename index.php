@@ -30,14 +30,14 @@ if($mode == "add"){
 }
 else if($mode=="edit"){
     if(isset($_POST['done'])){
-        $qr = "UPDATE todo_list SET done = $_POST[done] WHERE number = $_GET[number]";
+        $qr = "UPDATE todo_list SET done = $_POST[done], mod_date=now() WHERE number = $_GET[number]";
         $stmt = $conn->prepare($qr);
         $stmt->execute();
 
         echo "SUCCESS";
         exit;
     }else if(isset($_POST['todo'])){
-        $qr = "UPDATE todo_list SET todo=:todo WHERE number = $_GET[number]";
+        $qr = "UPDATE todo_list SET todo=:todo , mod_date=now() WHERE number = $_GET[number]";
         $stmt = $conn->prepare($qr);
         $stmt->bindParam(':todo',$_POST['todo']);
         $stmt->execute();
@@ -83,14 +83,24 @@ else if($mode == ''){
                         <input type="checkbox" class=" todo_check custom-control-input" id="'.$data['number'].'" '.$checked.'>
                         <label id="'.$data['number'].'-label" class=" custom-control-label todo_label '.$done.'" for="'.$data['number'].'">'.$data['todo'].'</label>
                         <div class="todo_btn">
-                            <button onclick="show_edit('.$data['number'].')" class="btn-primary">수정</button>
-                            <button onclick="del_list('.$data['number'].')" class="btn-secondary">삭제</button>
+                            <span class="pointer icon_btn" onclick="show_edit('.$data['number'].')"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></span>&nbsp;&nbsp;
+                            <span class="pointer icon_btn" onclick="del_list('.$data['number'].')" ><i class="fa fa-trash " aria-hidden="true"></i></span>
                         </div>
                 </div>
                 <div id="edit_'.$data['number'].'" class="todo_list_edit pl-0 hidden my-4" >
-                        <input id="edit_'.$data['number'].'_input" style="display:inline-block; width:90%;" type="text" class="form-control" value="'.$data['todo'].'">
-                        <button onclick="edit_list('.$data['number'].')" style="display: inline-block; margin-left:5px; width:8%;" class=" btn-primary">저장</button>
+                    <div class="row">
+                        <div class="col-md-11">
+                            <input id="edit_'.$data['number'].'_input"  type="text" class="form-control" value="'.$data['todo'].'">
+                        </div>
+                        <div class="col-md-1 pl-0">
+                            <span onclick="edit_list('.$data['number'].')" class="ml-3 pointer icon_btn"><i class="fa fa-check" aria-hidden="true"></i></span>
+                        </div>
                     </div>
+                    
+                        
+                        
+                       
+                </div>
             ';
         }
     }

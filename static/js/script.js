@@ -44,18 +44,21 @@ $('.todo_check').click(function () {
         }
     });
 });
-var audio = new Audio('static/mp3/modakbul.mp3');
+
+var arr = ['pado','rain','modakbul'];
+var random = Math.floor(Math.random() * 3);
+var audio = new Audio('static/mp3/'+arr[random]+'.mp3');
 audio.loop = true;
 
 function audio_play(x){
     var inner = '';
     if(!audio.paused){ //check audio is playing
         audio.pause();
-        inner = '<i class="fa fa-volume-off fa-2x" aria-hidden="true"></i>';
+        inner = '<i class="fa fa-play fa-2x" aria-hidden="true"></i>';
         
     }else{
         audio.play();
-        inner = '<i class="fa fa-volume-up fa-2x" aria-hidden="true"></i>';
+        inner = '<i class="fa fa-pause fa-2x" aria-hidden="true"></i>';
     }
     x.innerHTML = inner;
 }

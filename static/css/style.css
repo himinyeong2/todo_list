@@ -46,7 +46,33 @@ body,html{
     font-family: NotoSans;
 	color:white;
 }
-
+#clock{
+	font-size:1.5rem;
+}
+.d_day_title{
+	font-size:1.8rem;line-height: 1;
+}
+.prev_btn{
+	position: absolute; left:0; bottom:0; font-size:15px;
+}
+.next_btn{
+	position: absolute; right:0;  bottom:0; font-size:15px;
+}
+.audio{
+	color:white; position:absolute; right:15px ; top:15px;
+}
+.pointer{
+	cursor:pointer
+}
+.icon_btn{
+	color:white;
+}
+.icon_btn:hover{
+	color:#eb6864;
+}
+.icon_btn:active{
+	color:#e74742; 
+}
 body{
 	background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ),url(../img/background.jpeg);
 }
@@ -69,6 +95,7 @@ body{
 	display:none;
 }
 .today{
+	font-size:3rem;
 	margin-top:3rem;
 	margin-bottom:5.5rem;
 }

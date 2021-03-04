@@ -14,18 +14,15 @@
 </head>
 
 <body>
-    <span onclick="audio_play(this)" style="color:white; position:absolute; right:15px ; top:15px;"><i class="fa fa-volume-off fa-2x" aria-hidden="true"></i></span>
+    <span class="pointer audio " onclick="audio_play(this)" ><i class="fa fa-play fa-2x" aria-hidden="true"></i></span>
     <div class="container">
         <div class=" mx-auto col-md-9 py-5">
-            <div class="col-md-12 text-center today" style="font-size:3rem">
-                <div onclick="location.href='?'" style="font-size:1.8rem;line-height: 1;" >서울시 필기 <span style='color:yellow'>D-<?php echo $d_day ?></span></div>
-                <span onclick="go('<?php echo show_date(-1) ?>')"
-                    style="position: absolute; left:0; bottom:0; font-size:15px;cursor:pointer;">
-                    prev </span>
+            <div class="col-md-12 text-center today" >
+                <div class="d_day_title pointer" onclick="location.href='?'" >서울시 필기 <span class="text-warning">D-<?php echo $d_day ?></span></div>
+                <span class="pointer prev_btn icon_btn" onclick="go('<?php echo show_date(-1) ?>')">prev </span>
                 <?php echo $today."(".$weekday.")" ?>
-                <span onclick="go('<?php echo show_date(+1) ?>')"
-                    style="position: absolute; right:0;  bottom:0; font-size:15px;cursor:pointer;"> next </span>
-                <div style="font-size:1.5rem;" id="clock"></div>
+                <span class="pointer next_btn icon_btn" onclick="go('<?php echo show_date(+1) ?>')"> next </span>
+                <div  id="clock"></div>
             </div>
             <div class="col-md-12">
                 <div class="form-group">
