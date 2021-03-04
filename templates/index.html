@@ -14,18 +14,17 @@
 </head>
 
 <body>
-    <a href="?" style="color:white; position:absolute; right:10px ; top:10px;">home
-    </a>
+    <span onclick="audio_play(this)" style="color:white; position:absolute; right:15px ; top:15px;"><i class="fa fa-volume-off fa-2x" aria-hidden="true"></i></span>
     <div class="container">
-        <div class=" mx-auto col-md-9 py-4">
+        <div class=" mx-auto col-md-9 py-5">
             <div class="col-md-12 text-center today" style="font-size:3rem">
-                <div style="font-size:1.8rem;" >서울시 필기 <span style='color:yellow'>D-<?php echo $d_day ?></span></div>
+                <div onclick="location.href='?'" style="font-size:1.8rem;line-height: 1;" >서울시 필기 <span style='color:yellow'>D-<?php echo $d_day ?></span></div>
                 <span onclick="go('<?php echo show_date(-1) ?>')"
-                    style="position: absolute; left:0; bottom:0; font-size:15px;">
+                    style="position: absolute; left:0; bottom:0; font-size:15px;cursor:pointer;">
                     prev </span>
                 <?php echo $today."(".$weekday.")" ?>
                 <span onclick="go('<?php echo show_date(+1) ?>')"
-                    style="position: absolute; right:0;  bottom:0; font-size:15px;"> next </span>
+                    style="position: absolute; right:0;  bottom:0; font-size:15px;cursor:pointer;"> next </span>
                 <div style="font-size:1.5rem;" id="clock"></div>
             </div>
             <div class="col-md-12">
