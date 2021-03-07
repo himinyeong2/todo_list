@@ -14,15 +14,19 @@
 </head>
 
 <body>
-    <span class="pointer audio " onclick="audio_play(this)" ><i class="fa fa-play fa-2x" aria-hidden="true"></i></span>
+    <span class="pointer audio " onclick="audio_play(this)"><i class="fa fa-play fa-2x" aria-hidden="true"></i></span>
+    <span onclick="show_timer(this)" style="position:absolute; right:10px; bottom:10px;" class="pointer timer "><i
+            class="fa fa-clock-o fa-2x" aria-hidden="true"></i></span>
     <div class="container">
-        <div class=" mx-auto col-md-9 py-5">
-            <div class="col-md-12 text-center today" >
-                <div class="d_day_title pointer" onclick="location.href='?'" >서울시 필기 <span class="text-warning">D-<?php echo $d_day ?></span></div>
+        <div id="todo_list" class=" mx-auto col-md-9 py-5">
+            <div class="col-md-12 text-center today">
+                <div class="d_day_title pointer" onclick="location.href='?'">서울시 필기 <span class="text-warning">D-
+                        <?php echo $d_day ?>
+                    </span></div>
                 <span class="pointer prev_btn icon_btn" onclick="go('<?php echo show_date(-1) ?>')">prev </span>
                 <?php echo $today."(".$weekday.")" ?>
                 <span class="pointer next_btn icon_btn" onclick="go('<?php echo show_date(+1) ?>')"> next </span>
-                <div  id="clock"></div>
+                <div id="clock"></div>
             </div>
             <div class="col-md-12">
                 <div class="form-group">
@@ -31,13 +35,44 @@
             </div>
 
             <?php echo $todo_list ?>
+        </div>
 
+        <div style="display:none;" id="stop_watch" class=" mx-auto col-md-9 py-5">
+            <div class="col-md-12 text-center today">
+                <div class="d_day_title ">스톱워치 <span class="text-warning"></span></div>
+                <?php echo $today."(".$weekday.")" ?>
+            </div>
+            <div class="col-md-12 text-center">
+                <div class="form-group">
+                    <input style="width:100px; display:inline-block;" type="number" name="min" placeholder=""
+                        class="form-control"><span>분</span>&nbsp;
+                    <input style="width:100px; display:inline-block;" type="number" name="sec" placeholder=""
+                        class="form-control"><span>초</span>&nbsp;
+                    <button class="btn btn-primary btn-sm" onclick="timer()"><i class="fa fa-play" aria-hidden="true"></i></button>&nbsp;
+                    <button class="btn btn-secondary btn-sm" onclick="reset()"><i class="fa fa-pause" aria-hidden="true"></i></button>
+                </div>
+            </div>
+            <div id="timer" class="col-md-12 mt-5 text-center" style="font-size:3rem;"></div>
         </div>
     </div>
 
     <script src="static/js/clock.js"></script>
+    <script src="static/js/timer.js"></script>
     <script src="static/js/script.js"></script>
     <script>
+        function show_timer(x) {
+
+
+            if ($('#stop_watch').css('display') == "none") {
+                $('#todo_list').hide();
+                $(x).html('<i class="fa fa-list fa-2x" aria-hidden="true"></i>');
+                $('#stop_watch').show();
+            } else {
+                $('#stop_watch').hide();
+                $(x).html('<i class="fa fa-clock-o fa-2x" aria-hidden="true"></i>');
+                $('#todo_list').show();
+            }
+        }
         $('#todo_list_input').keypress(function (e) {
             if (e.keyCode == 13) {
                 var input = $(this).val();

@@ -45,8 +45,8 @@ $('.todo_check').click(function () {
     });
 });
 
-var arr = ['pado','rain','modakbul'];
-var random = Math.floor(Math.random() * 3);
+var arr = ['pado','rain','modakbul','baram'];
+var random = Math.floor(Math.random() * 4);
 var audio = new Audio('static/mp3/'+arr[random]+'.mp3');
 audio.loop = true;
 
